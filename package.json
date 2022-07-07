@@ -1,0 +1,31 @@
+{
+    "name": "strapi-provider-upload-cloudflare-r2",
+    "version": "0.0.1",
+    "description": "Cloudflare r2 provider for strapi upload",
+    "keywords": [
+      "upload",
+      "cloudflare",
+      "r2",
+      "strapi"
+    ],
+    "license": "SEE LICENSE IN LICENSE",
+    "author": {
+      "name": "jeffreytung7"
+    },
+    "main": "./lib",
+    "directories": {
+      "lib": "./lib"
+    },
+    "scripts": {
+      "test": "echo \"no tests yet\""
+    },
+    "dependencies": {
+      "aws-sdk": "2.892.0",
+      "lodash": "4.17.21"
+    },
+    "engines": {
+      "node": ">=14.19.1 <=16.x.x",
+      "npm": ">=6.0.0"
+    }
+  }
+  
