@@ -8,7 +8,7 @@
 
 - [Strapi website](https://strapi.io/)
 - [Strapi documentation](https://docs.strapi.io)
-- [Strapi community on Discord](https://discord.strapi.io)
+- [Cloudflare R2 documentation](https://developers.cloudflare.com/r2/)
 
 ## Installation
 
