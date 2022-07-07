@@ -131,7 +131,7 @@ These are the minimum amount of permissions needed for this provider to work.
 
 ## Deploy to Heroku
 
-Remember to set the env variables on the live server:
+Remember to set the env variables on the live server. CD into your project and run:
 
 ```bash
 heroku config:set R2_ACCESS_KEY_ID=$(cat .env | grep R2_ACCESS_KEY_ID | cut -d= -f2-)

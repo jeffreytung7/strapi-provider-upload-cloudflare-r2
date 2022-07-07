@@ -1,6 +1,6 @@
 {
     "name": "strapi-provider-upload-cloudflare-r2",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Cloudflare r2 provider for strapi upload",
     "keywords": [
       "upload",
