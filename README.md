@@ -13,11 +13,12 @@
 ## Installation
 
 ```bash
+# using npm
+npm install strapi-provider-upload-cloudflare-r2
+```
+```bash
 # using yarn
 yarn add strapi-provider-upload-cloudflare-r2
-
-# using npm
-npm install strapi-provider-upload-cloudflare-r2 --save
 ```
 
 ## Configuration
@@ -128,4 +129,15 @@ These are the minimum amount of permissions needed for this provider to work.
 ],
 ```
 
+## Deploy to Heroku
 
+Remember to set the env variables on the live server:
+
+```bash
+heroku config:set R2_ACCESS_KEY_ID=$(heroku info -s | grep R2_ACCESS_KEY_ID | cut -d= -f2)
+heroku config:set R2_ACCESS_SECRET=$(cat .env | grep R2_ACCESS_SECRET | cut -d= -f2-)
+heroku config:set R2_REGION=$(cat .env | grep R2_REGION | cut -d= -f2)
+heroku config:set R2_BUCKET=$(cat .env | grep R2_BUCKET | cut -d= -f2)
+heroku config:set R2_WORKER_URL=$(cat .env | grep -w R2_WORKER_URL | cut -d= -f2)
+heroku config:set R2_ACCOUNT_ID=$(cat .env | grep -w R2_ACCOUNT_ID | cut -d= -f2)
+```
