@@ -134,7 +134,7 @@ These are the minimum amount of permissions needed for this provider to work.
 Remember to set the env variables on the live server:
 
 ```bash
-heroku config:set R2_ACCESS_KEY_ID=$(heroku info -s | grep R2_ACCESS_KEY_ID | cut -d= -f2)
+heroku config:set R2_ACCESS_KEY_ID=$(cat .env | grep R2_ACCESS_KEY_ID | cut -d= -f2-)
 heroku config:set R2_ACCESS_SECRET=$(cat .env | grep R2_ACCESS_SECRET | cut -d= -f2-)
 heroku config:set R2_REGION=$(cat .env | grep R2_REGION | cut -d= -f2)
 heroku config:set R2_BUCKET=$(cat .env | grep R2_BUCKET | cut -d= -f2)
