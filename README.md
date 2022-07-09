@@ -1,11 +1,6 @@
 # strapi-provider-upload-cloudflare-r2
 
-## Resources
-
 - [LICENSE](LICENSE)
-
-## Links
-
 - [Strapi website](https://strapi.io/)
 - [Strapi documentation](https://docs.strapi.io)
 - [Cloudflare R2 documentation](https://developers.cloudflare.com/r2/)
@@ -31,7 +26,7 @@ See the [documentation about using a provider](https://docs.strapi.io/developer-
 
 To get the env variables below, [follow these instructions](https://developers.cloudflare.com/r2/platform/s3-compatibility/tokens/).
 
-The R2_ACCESS_KEY_ID and R2_ACCESS_SECRET are given when you make the API token.
+The R2_ACCESS_KEY_ID and R2_ACCESS_SECRET are given when you make the API token. Note: when creating the token and selecting the time active limit, change to Custom and don't put anything there, that will set it to unlimited time.
 
 The R2_REGION should be set to us-east-1 ([the guide](https://developers.cloudflare.com/r2/platform/s3-compatibility/api/) says auto works but it doesn't).
 
@@ -115,23 +110,9 @@ module.exports = ({ env }) => ([
 ]);
 ```
 
-
-## Required AWS Policy Actions
-
-These are the minimum amount of permissions needed for this provider to work.
-
-```json
-"Action": [
-  "s3:PutObject",
-  "s3:GetObject",
-  "s3:ListBucket",
-  "s3:DeleteObject"
-],
-```
-
 ## Deploy to Heroku
 
-Remember to set the env variables on the live server. CD into your project and run:
+During development, the env variables should be in the .env file. Remember to set the env variables on the live server. CD into your project and run:
 
 ```bash
 heroku config:set R2_ACCESS_KEY_ID=$(cat .env | grep R2_ACCESS_KEY_ID | cut -d= -f2-)
