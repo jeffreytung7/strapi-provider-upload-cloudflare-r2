@@ -37,7 +37,7 @@ The R2_REGION should be set to us-east-1 ([the guide](https://developers.cloudfl
 
 The R2_BUCKET is the name of the R2 bucket you create, as seen on the Cloudflare R2 dashboard. The R2_ACCOUNT_ID is also on that dashboard. 
 
-The R2_WORKER_URL is the full URL of the worker you have to make to set the bucket as public. Easiest way to do that is [here](https://github.com/kotx/render). Note: for Github Actions you set the secrets in your github repo > Settings > Secrets
+The R2_WORKER_URL is the full URL of the worker you have to make to set the bucket as public (must include http:// or https://, must not include / at the end of URL. eg: https://myworker.worker.dev). Easiest way to do that is [here](https://github.com/kotx/render). Note: for Github Actions you set the secrets in your github repo > Settings > Secrets
 
 Currently there is no way to set R2 buckets as public without binding it to a worker.
 
@@ -97,14 +97,14 @@ module.exports = ({ env }) => ([
             'data:',
             'blob:',
             'dl.airtable.com',
-            env('R2_WORKER_URL'),
+            env('R2_WORKER_URL').replace(/^https?:\/\//, ''), // removes http or https from url
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
             'dl.airtable.com',
-            env('R2_WORKER_URL'),
+            env('R2_WORKER_URL').replace(/^https?:\/\//, ''),
           ],
           upgradeInsecureRequests: null,
         },
