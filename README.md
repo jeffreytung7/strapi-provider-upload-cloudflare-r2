@@ -32,11 +32,9 @@ The R2_REGION should be set to us-east-1 ([the guide](https://developers.cloudfl
 
 The R2_BUCKET is the name of the R2 bucket you create, as seen on the Cloudflare R2 dashboard. The R2_ACCOUNT_ID is also on that dashboard. 
 
-The R2_WORKER_URL is the full URL of the worker you have to make to set the bucket as public (must include http:// or https://, must not include / at the end of URL. eg: https://myworker.worker.dev). Easiest way to do that is [here](https://github.com/kotx/render). Note: for Github Actions you set the secrets in your github repo > Settings > Secrets
+The R2_PUBLIC_URL is the full URL of bucket as public which is found in Cloudflare R2 Settings (must include http:// or https://, must not include / at the end of URL. eg: https://pub-b627.r2.dev).
 
-Currently there is no way to set R2 buckets as public without binding it to a worker.
-
-After you load up Strapi and upload an image, it will be publically available at R2_WORKER_URL/name_of_the_img_file.png
+After you load up Strapi and upload an image, it will be publically available at R2_PUBLIC_URL/name_of_the_img_file.png
 
 ### Provider Configuration
 
@@ -55,7 +53,7 @@ module.exports = ({ env }) => ({
                 params: {
                     Bucket: env('R2_BUCKET'),
                     accountId: env('R2_ACCOUNT_ID'),
-                    workerUrl: env('R2_WORKER_URL'),
+                    publicUrl: env('R2_PUBLIC_URL'),
                 },
             },
             actionOptions: {
@@ -92,14 +90,14 @@ module.exports = ({ env }) => ([
             'data:',
             'blob:',
             'dl.airtable.com',
-            env('R2_WORKER_URL').replace(/^https?:\/\//, ''), // removes http or https from url
+            env('R2_PUBLIC_URL').replace(/^https?:\/\//, ''), // removes http or https from url
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
             'dl.airtable.com',
-            env('R2_WORKER_URL').replace(/^https?:\/\//, ''),
+            env('R2_PUBLIC_URL').replace(/^https?:\/\//, ''),
           ],
           upgradeInsecureRequests: null,
         },
@@ -110,15 +108,3 @@ module.exports = ({ env }) => ([
 ]);
 ```
 
-## Deploy to Heroku
-
-During development, the env variables should be in the .env file. Remember to set the env variables on the live server. CD into your project and run:
-
-```bash
-heroku config:set R2_ACCESS_KEY_ID=$(cat .env | grep R2_ACCESS_KEY_ID | cut -d= -f2-)
-heroku config:set R2_ACCESS_SECRET=$(cat .env | grep R2_ACCESS_SECRET | cut -d= -f2-)
-heroku config:set R2_REGION=$(cat .env | grep R2_REGION | cut -d= -f2)
-heroku config:set R2_BUCKET=$(cat .env | grep R2_BUCKET | cut -d= -f2)
-heroku config:set R2_WORKER_URL=$(cat .env | grep -w R2_WORKER_URL | cut -d= -f2)
-heroku config:set R2_ACCOUNT_ID=$(cat .env | grep -w R2_ACCOUNT_ID | cut -d= -f2)
-```
