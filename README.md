@@ -26,7 +26,7 @@ See the [documentation about using a provider](https://docs.strapi.io/developer-
 
 To get the env variables below, [follow these instructions](https://developers.cloudflare.com/r2/platform/s3-compatibility/tokens/).
 
-The R2_ACCESS_KEY_ID and R2_ACCESS_SECRET are given when you make the API token. Note: when creating the token and selecting the time active limit, change to Custom and don't put anything there, that will set it to unlimited time.
+The R2_ACCESS_KEY_ID and R2_ACCESS_SECRET are given when you make the API token. Give edit access. Note: when creating the token and selecting the time active limit, change to Custom and don't put anything there, that will set it to unlimited time.
 
 The R2_REGION should be set to us-east-1 ([the guide](https://developers.cloudflare.com/r2/platform/s3-compatibility/api/) says auto works but it doesn't).
 
